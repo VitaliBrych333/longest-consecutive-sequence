@@ -1,20 +1,20 @@
 module.exports = function longestConsecutiveLength(array) {
+  let length = array.length;
+  let tempArray = [];
+  let lengthSequence = 0;
   
-  var n = array.length;
-  var S = new Array();
-  var k =0;
+  for (let i = 0; i < length; i++) { 
+    tempArray[array[i]] = array[i];
+  }
   
-  for (var i=0; i<n;i++) { 
-	  S[array[i]]=array[i];}
-  
-  for ( var i=0; i<n; i++) {
-	    
-	  if(S[array[i]-1] === undefined ) {
-		  var j= array[i];
-		  while (S[j]) j++
+  for (let i = 0; i < length; i++) {	    
+      if (tempArray[array[i] - 1] === undefined ) {
+        let tempNum = array[i];      
+        while (tempArray[tempNum]) tempNum++;
 
-		  if (k<j-array[i]) k = j-array[i];
-	  }
-  
-  } return k;
+        if (lengthSequence < tempNum - array[i]) lengthSequence = tempNum - array[i];
+      }  
+  } 
+
+  return lengthSequence;
 }  
